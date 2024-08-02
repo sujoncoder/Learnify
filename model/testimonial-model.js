@@ -5,14 +5,10 @@ const testimonialSchema = new Schema({
     required: true,
     type: String,
   },
-  user: {
-    required: true,
-    type: String,
-  },
-  courseId: {
-    required: true,
-    type: String,
-  },
+  user: { type: Schema.ObjectId, ref: "User" },
+
+  courseId: { type: Schema.ObjectId, ref: "Course" },
+
   rating: {
     required: true,
     type: Number,
