@@ -11,6 +11,7 @@ import {
 } from "./ui/dropdown-menu";
 
 import { useSession } from "next-auth/react";
+import { redirect } from "next/navigation";
 import { useEffect } from "react";
 
 export function MobileNav({ items, children }) {
@@ -19,6 +20,9 @@ export function MobileNav({ items, children }) {
   const { data: session } = useSession();
 
   const [loginSession, setLoginSession] = useState(null);
+  if (session?.error === "RefreshAccessTokenError") {
+    redirect("/login");
+  }
 
   useEffect(() => {
     setLoginSession(session);
