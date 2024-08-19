@@ -1,11 +1,11 @@
 "use client";
-
+// 
 import { createCheckoutSession } from "@/app/actions/stripe";
 import { cn } from "@/lib/utils";
 import { ArrowRight } from "lucide-react";
 import { Button, buttonVariants } from "./ui/button";
 
-export const EnrollCourse = ({ asLink }) => {
+export const EnrollCourse = ({ asLink, courseId }) => {
   const formAction = async (data) => {
     const { url } = await createCheckoutSession(data);
     window.location.assign(url);
@@ -13,6 +13,7 @@ export const EnrollCourse = ({ asLink }) => {
   return (
     <>
       <form action={formAction}>
+        <input type="hidden" name="courseId" value={courseId} />
         {asLink ? (
           <Button
             variant="ghost"

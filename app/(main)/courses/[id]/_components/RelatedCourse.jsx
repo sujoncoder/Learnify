@@ -7,7 +7,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { formatPrice } from "@/lib/formatPrice";
+import { formatPrice } from "@/lib/formatAmountForStripe";
 import { ArrowRight, BookOpen } from "lucide-react";
 import Link from "next/link";
 

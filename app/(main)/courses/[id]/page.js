@@ -2,7 +2,6 @@ import { replaceMongoIdInArray } from "@/lib/convertData";
 import { getCourseDetails } from "@/queries/courses";
 import CourseDetails from "./_components/CourseDetails";
 import CourseDetailsIntro from "./_components/CourseDetailsIntro";
-import RelatedCourse from "./_components/RelatedCourse";
 import Testimonials from "./_components/Testimonials";
 
 const SingleCoursePage = async ({ params: { id } }) => {
@@ -10,9 +9,7 @@ const SingleCoursePage = async ({ params: { id } }) => {
   return (
     <>
       <CourseDetailsIntro
-        title={course?.title}
-        subtitle={course?.subtitle}
-        thumbnail={course?.thumbnail}
+        course={course}
       />
 
       <CourseDetails course={course} />
@@ -23,7 +20,7 @@ const SingleCoursePage = async ({ params: { id } }) => {
         />
       )}
 
-      <RelatedCourse />
+      {/* <RelatedCourse /> */}
     </>
   );
 };

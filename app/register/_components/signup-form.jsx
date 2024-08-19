@@ -1,7 +1,5 @@
 "use client";
 
-import Link from "next/link";
-
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -12,21 +10,33 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 
 export function SignupForm({ role }) {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
   const router = useRouter();
+
   const handleOnSubmit = async (event) => {
     event.preventDefault();
+    setLoading(true);
+    setError("");
 
     const formData = new FormData(event.currentTarget);
     const firstName = formData.get("first-name");
     const lastName = formData.get("last-name");
     const email = formData.get("email");
     const password = formData.get("password");
+    const confirmPassword = formData.get("confirmPassword");
+
+    if (password !== confirmPassword) {
+      setError("Passwords do not match.");
+      setLoading(false);
+      return;
+    }
 
     const userRole =
       role === "student" || role === "instructor" ? role : "student";
@@ -45,17 +55,22 @@ export function SignupForm({ role }) {
           userRole,
         }),
       });
-      setLoading(true);
+
       if (response.ok) {
-        toast.success("User login successfull.");
+        toast.success("Account created successfully.");
         router.push("/login");
+      } else {
+        const errorData = await response.json();
+        setError(errorData.message || "Failed to create account.");
       }
     } catch (error) {
       console.log(error.message);
-      toast.error(error.message);
+      setError("An unexpected error occurred.");
+    } finally {
       setLoading(false);
     }
   };
+
   return (
     <Card className="mx-auto max-w-sm">
       <Toaster />
@@ -100,7 +115,12 @@ export function SignupForm({ role }) {
             </div>
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
-              <Input id="password" name="password" type="password" />
+              <Input
+                id="password"
+                name="password"
+                type="password"
+                required
+              />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="confirmPassword">Confirm Password</Label>
@@ -108,10 +128,12 @@ export function SignupForm({ role }) {
                 id="confirmPassword"
                 name="confirmPassword"
                 type="password"
+                required
               />
             </div>
+            {error && <p className="text-red-500 text-sm">{error}</p>}
             <Button type="submit" className="w-full">
-              {loading ? "Loading" : "Create an account"}
+              {loading ? "Loading..." : "Create an account"}
             </Button>
           </div>
         </form>
