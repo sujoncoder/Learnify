@@ -1,4 +1,4 @@
-"use client";
+"use client"
 
 import { Button } from "@/components/ui/button";
 import {
@@ -11,38 +11,29 @@ import {
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import Link from "next/link";
+
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
+import { toast } from "sonner";
 
 export function SignupForm({ role }) {
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false)
   const router = useRouter();
 
-  const handleOnSubmit = async (event) => {
+  async function onSubmit(event) {
     event.preventDefault();
-    setLoading(true);
-    setError("");
-
-    const formData = new FormData(event.currentTarget);
-    const firstName = formData.get("first-name");
-    const lastName = formData.get("last-name");
-    const email = formData.get("email");
-    const password = formData.get("password");
-    const confirmPassword = formData.get("confirmPassword");
-
-    if (password !== confirmPassword) {
-      setError("Passwords do not match.");
-      setLoading(false);
-      return;
-    }
-
-    const userRole =
-      role === "student" || role === "instructor" ? role : "student";
+    setLoading(true)
 
     try {
-      const response = await fetch("/api/register", {
+      const formData = new FormData(event.currentTarget);
+      const firstName = formData.get("first-name");
+      const lastName = formData.get("last-name");
+      const email = formData.get('email');
+      const password = formData.get('password');
+
+      const userRole = ((role === "student") || (role === "instructor")) ? role : "student";
+
+      const response = await fetch("http://localhost:3001/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -52,28 +43,26 @@ export function SignupForm({ role }) {
           lastName,
           email,
           password,
-          userRole,
-        }),
+          userRole
+        })
       });
 
-      if (response.ok) {
-        toast.success("Account created successfully.");
-        router.push("/login");
+      if (response.status === 201) {
+        toast.success("User created succssfully")
+        router.push("/login")
       } else {
-        const errorData = await response.json();
-        setError(errorData.message || "Failed to create account.");
+        toast.error("User not created")
+        setLoading(false)
       }
+
     } catch (error) {
-      console.log(error.message);
-      setError("An unexpected error occurred.");
-    } finally {
-      setLoading(false);
+      toast.error(error.message)
+      setLoading(false)
     }
-  };
+  }
 
   return (
     <Card className="mx-auto max-w-sm">
-      <Toaster />
       <CardHeader>
         <CardTitle className="text-xl">Sign Up</CardTitle>
         <CardDescription>
@@ -81,57 +70,36 @@ export function SignupForm({ role }) {
         </CardDescription>
       </CardHeader>
       <CardContent>
-        <form onSubmit={handleOnSubmit}>
+        <form onSubmit={onSubmit}>
           <div className="grid gap-4">
             <div className="grid grid-cols-2 gap-4">
               <div className="grid gap-2">
                 <Label htmlFor="first-name">First name</Label>
-                <Input
-                  id="first-name"
-                  name="first-name"
-                  placeholder="Sujon"
-                  required
-                />
+                <Input id="first-name" name="first-name" placeholder="Max" required />
               </div>
               <div className="grid gap-2">
                 <Label htmlFor="last-name">Last name</Label>
-                <Input
-                  id="last-name"
-                  name="last-name"
-                  placeholder="Sheikh"
-                  required
-                />
+                <Input id="last-name" name="last-name" placeholder="Robinson" required />
               </div>
             </div>
             <div className="grid gap-2">
               <Label htmlFor="email">Email</Label>
               <Input
                 id="email"
-                type="email"
                 name="email"
-                placeholder="ss@example.com"
+                type="email"
+                placeholder="m@example.com"
                 required
               />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="password">Password</Label>
-              <Input
-                id="password"
-                name="password"
-                type="password"
-                required
-              />
+              <Input id="password" name="password" type="password" />
             </div>
             <div className="grid gap-2">
               <Label htmlFor="confirmPassword">Confirm Password</Label>
-              <Input
-                id="confirmPassword"
-                name="confirmPassword"
-                type="password"
-                required
-              />
+              <Input id="confirmPassword" name="confirmPassword" type="password" />
             </div>
-            {error && <p className="text-red-500 text-sm">{error}</p>}
             <Button type="submit" className="w-full">
               {loading ? "Loading..." : "Create an account"}
             </Button>
