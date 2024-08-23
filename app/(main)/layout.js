@@ -1,5 +1,8 @@
-import Footer from "@/components/footer";
 import { MainNav } from "@/components/main-nav";
+import { SiteFooter } from "@/components/site-footer";
+import { buttonVariants } from "@/components/ui/button";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 
 import { SessionProvider } from "next-auth/react";
 
@@ -32,7 +35,7 @@ const MainLayout = ({ children }) => {
         </SessionProvider>
       </header>
       <main className="flex-1 pt-20 flex flex-col">{children}</main>
-      <Footer />
+      <SiteFooter />
     </div>
   );
 };

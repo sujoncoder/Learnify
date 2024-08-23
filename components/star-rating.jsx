@@ -1,8 +1,9 @@
+
 import Image from "next/image";
 
-/* eslint-disable jsx-a11y/alt-text */
-const StarRating = ({ rating }) => {
+export function StarRating({ rating }) {
   const stars = new Array(rating).fill(0);
+
   return (
     <>
       {stars.map((star, index) => (
@@ -10,6 +11,4 @@ const StarRating = ({ rating }) => {
       ))}
     </>
   );
-};
-
-export default StarRating;
+}

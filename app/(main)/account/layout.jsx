@@ -1,8 +1,9 @@
-import AccountSidebar from "./component/account-sidbar";
+import AccountSidebar from "./component/account-sidebar";
 
 function Layout({ tabs }) {
 	return (
 		<section className="relative pb-16">
+			{/*end container*/}
 			<div className="container relative mt-10">
 				<div className="lg:flex">
 					<AccountSidebar />

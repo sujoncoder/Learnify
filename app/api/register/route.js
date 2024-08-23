@@ -1,35 +1,38 @@
-import connectDB from "@/config/DB";
 import { User } from "@/model/user-model";
+import { dbConnect } from "@/service/mongo";
+
+import { NextRequest, NextResponse } from "next/server";
 
 import bcrypt from "bcryptjs";
-import colors from "colors";
-import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
-  try {
-    console.log("hello from register API", colors.red)
-    await connectDB();  // Ensure the database is connected
-
     const { firstName, lastName, email, password, userRole } = await request.json();
+
+    console.log(firstName, lastName, email, password, userRole)
+
+    await dbConnect();
+
     const hashedPassword = await bcrypt.hash(password, 5);
 
     const newUser = {
-      firstName,
-      lastName,
-      email,
-      password: hashedPassword,
-      role: userRole,
-    };
+        firstName,
+        lastName,
+        email,
+        password: hashedPassword,
+        role: userRole
+    }
 
-    await User.create(newUser);
+    console.log(newUser);
 
-    return new NextResponse("User has been created", {
-      status: 201,
-    });
-  } catch (error) {
-    console.error("Error:", error);
-    return new NextResponse(error.message, {
-      status: 500,
-    });
-  }
-};
+    try{
+        await User.create(newUser);
+        return new NextResponse("User has been created", {
+            status: 201,
+        });
+    } catch(error) {
+        console.error(error);
+        return new NextResponse(error.message, {
+            status: 500,
+          });
+    }
+}

@@ -1,16 +1,16 @@
 "use server"
 
 import { User } from "@/model/user-model";
-import { validatePassword } from "@/queries/users";
-import bcrypt from "bcryptjs";
 import { revalidatePath } from "next/cache";
+import bcrypt from "bcryptjs";
+import { validatePassword } from "@/queries/users";
 
 export async function updateUserInfo(email, updatedData) {
     try {
-        const filter = { email: email };
+        const filter = {email: email};
         await User.findOneAndUpdate(filter, updatedData);
         revalidatePath('/account');
-    } catch (error) {
+    } catch(error) {
         throw new Error(error)
     }
 }
@@ -22,7 +22,7 @@ export async function changePassword(email, oldPassword, newPassword) {
         throw new Error("Please enter a valid current password");
     }
 
-    const filter = { email: email };
+    const filter = {email: email};
 
     const hashedPassword = await bcrypt.hash(newPassword, 5);
 
@@ -30,10 +30,10 @@ export async function changePassword(email, oldPassword, newPassword) {
         password: hashedPassword
     }
 
-    try {
+    try{
         await User.findOneAndUpdate(filter, dataToUpdate);
         revalidatePath('/account');
-    } catch (error) {
+    } catch(error) {
         throw new Error(error);
     }
 

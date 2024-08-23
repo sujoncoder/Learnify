@@ -1,5 +1,7 @@
 "use client"
 
+import Link from "next/link";
+
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -10,22 +12,18 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import Link from "next/link";
 
 import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { toast } from "sonner";
 
-export function SignupForm({ role }) {
-  const [loading, setLoading] = useState(false)
+export function SignupForm({role}) {
   const router = useRouter();
 
   async function onSubmit(event) {
     event.preventDefault();
-    setLoading(true)
 
-    try {
+    try{
       const formData = new FormData(event.currentTarget);
+
       const firstName = formData.get("first-name");
       const lastName = formData.get("last-name");
       const email = formData.get('email');
@@ -33,7 +31,7 @@ export function SignupForm({ role }) {
 
       const userRole = ((role === "student") || (role === "instructor")) ? role : "student";
 
-      const response = await fetch("http://localhost:3001/api/register", {
+      const response = await fetch("/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -47,17 +45,10 @@ export function SignupForm({ role }) {
         })
       });
 
-      if (response.status === 201) {
-        toast.success("User created succssfully")
-        router.push("/login")
-      } else {
-        toast.error("User not created")
-        setLoading(false)
-      }
+      response.status === 201 && router.push("/login");
 
-    } catch (error) {
-      toast.error(error.message)
-      setLoading(false)
+    } catch(e){
+      console.log(e.message);
     }
   }
 
@@ -101,7 +92,7 @@ export function SignupForm({ role }) {
               <Input id="confirmPassword" name="confirmPassword" type="password" />
             </div>
             <Button type="submit" className="w-full">
-              {loading ? "Loading..." : "Create an account"}
+              Create an account
             </Button>
           </div>
         </form>

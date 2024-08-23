@@ -1,11 +1,11 @@
 "use server";
 
-import { stripe } from "@/lib/stripe";
-import { formatAmountForStripe } from "@/lib/stripe-helper";
-import { getCourseDetails } from "@/queries/courses";
 import { headers } from "next/headers";
 const CURRENCY = "inr";
+import { formatAmountForStripe } from "@/lib/stripe-helpers";
+import { stripe } from "@/lib/stripe";
 
+import { getCourseDetails } from "@/queries/courses";
 
 export async function createCheckoutSession(data) {
     const ui_mode = "hosted";
@@ -14,7 +14,7 @@ export async function createCheckoutSession(data) {
 
     const course = await getCourseDetails(courseId);
 
-    if (!course) return new Error(`Course not found`);
+    if (!course)  return new Error(`Course not found`);
 
     const courseName = course?.title;
     const coursePrice = course?.price;

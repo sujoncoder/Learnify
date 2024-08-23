@@ -1,27 +1,23 @@
-import { replaceMongoIdInArray } from "@/lib/convertData";
-import { getCourseDetails } from "@/queries/courses";
-import CourseDetails from "./_components/CourseDetails";
 import CourseDetailsIntro from "./_components/CourseDetailsIntro";
 import Testimonials from "./_components/Testimonials";
+import RelatedCourses from "./_components/RelatedCourses";
+import CourseDetails from "./_components/CourseDetails";
 
-const SingleCoursePage = async ({ params: { id } }) => {
-  const course = await getCourseDetails(id);
-  return (
-    <>
-      <CourseDetailsIntro
-        course={course}
-      />
+import { getCourseDetails } from "@/queries/courses";
+import { replaceMongoIdInArray } from "@/lib/convertData";
 
-      <CourseDetails course={course} />
+const SingleCoursePage = async ({params: {id}}) => {
+    const course = await getCourseDetails(id);
+    return (
+        <>
+            <CourseDetailsIntro course={course} />
 
-      {course?.testimonials && (
-        <Testimonials
-          testimonials={replaceMongoIdInArray(course?.testimonials)}
-        />
-      )}
+            <CourseDetails course={course} />
 
-      {/* <RelatedCourse /> */}
-    </>
-  );
+            {course?.testimonials && <Testimonials testimonials={replaceMongoIdInArray(course?.testimonials)} />}
+
+            {/*<RelatedCourses />*/}
+        </>
+    );
 };
 export default SingleCoursePage;

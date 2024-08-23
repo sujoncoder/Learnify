@@ -1,24 +1,24 @@
-import mongoose, { Schema } from "mongoose";
+import mongoose, {Schema} from "mongoose";
 
 const enrollmentSchema = new Schema({
   enrollment_date: {
     required: true,
-    type: Date,
+    type: Date
   },
 
   status: {
     required: true,
-    type: String,
+    type: String
   },
 
   completion_date: {
     required: false,
-    type: Date,
+    type: Date
   },
 
   method: {
     required: true,
-    type: String,
+    type: String
   },
 
   course: { type: Schema.ObjectId, ref: "Course" },
@@ -26,5 +26,4 @@ const enrollmentSchema = new Schema({
   student: { type: Schema.ObjectId, ref: "User" },
 });
 
-export const Enrollment =
-  mongoose.models.Enrollment ?? mongoose.model("Enrollment", enrollmentSchema);
+export const Enrollment = mongoose.models.Enrollment ?? mongoose.model("Enrollment", enrollmentSchema);
