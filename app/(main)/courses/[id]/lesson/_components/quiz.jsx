@@ -1,11 +1,10 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
 
-import QuizModal from "./quiz-modal";
+import QuizModal from "./QuizModal";
 
 export function Quiz({ courseId, quizSet, isTaken }) {
     const [open, setOpen] = useState(false);
@@ -25,7 +24,7 @@ export function Quiz({ courseId, quizSet, isTaken }) {
             }),
         };
     });
-    console.log({quizzes});
+    console.log({ quizzes });
     return (
         <>
             <div class="max-w-[270px] bg-white border border-border rounded-md dark:bg-gray-800 dark:border-gray-700 overflow-hidden">

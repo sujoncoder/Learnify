@@ -1,3 +1,5 @@
+import { SectionTitle } from "@/components/SectionTitle";
+import { StarRating } from "@/components/star-rating";
 import {
     Carousel,
     CarouselContent,
@@ -5,11 +7,9 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
-import { SectionTitle } from "@/components/section-title";
-import { StarRating } from "@/components/star-rating";
 import Image from "next/image";
 
-const Testimonials = ({testimonials}) => {
+const Testimonials = ({ testimonials }) => {
     return (
         <section className="pb-8 md:pb-12 lg:pb-24">
             <div className="container">
@@ -40,10 +40,10 @@ const Testimonials = ({testimonials}) => {
                                             />
                                             <div>
                                                 <p className="mt-0.5 text-lg font-medium text-gray-900">
-                                                {testimonial?.user?.first_name} {' '} {testimonial?.user?.last_name}
+                                                    {testimonial?.user?.first_name} {' '} {testimonial?.user?.last_name}
                                                 </p>
                                                 <div className="flex justify-center gap-0.5 text-yellow-600">
-                                                <StarRating rating={testimonial?.rating} />
+                                                    <StarRating rating={testimonial?.rating} />
                                                 </div>
                                             </div>
                                         </div>

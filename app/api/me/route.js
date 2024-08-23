@@ -1,6 +1,6 @@
-import { auth} from "@/auth";
+import { auth } from "@/auth";
+import connectDB from "@/config/database";
 import { getUserByEmail } from "@/queries/users";
-import { dbConnect } from "@/service/mongo";
 
 import { NextResponse } from "next/server";
 
@@ -10,10 +10,10 @@ export const GET = async (request) => {
     if (!session?.user) {
         return new NextResponse(`You are not authenticated!`, {
             status: 401,
-          });
+        });
     }
 
-    await dbConnect();
+    await connectDB();
 
     try {
         const user = await getUserByEmail(session?.user?.email);
@@ -25,6 +25,6 @@ export const GET = async (request) => {
     } catch (err) {
         return new NextResponse(err.message, {
             status: 500,
-          });
+        });
     }
 }

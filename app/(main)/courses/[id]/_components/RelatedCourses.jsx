@@ -1,3 +1,5 @@
+import { SectionTitle } from "@/components/SectionTitle";
+import { Button } from "@/components/ui/button";
 import {
     Carousel,
     CarouselContent,
@@ -5,13 +7,10 @@ import {
     CarouselNext,
     CarouselPrevious,
 } from "@/components/ui/carousel";
-import { SectionTitle } from "@/components/section-title";
-import Link from "next/link";
-import Image from "next/image";
-import { BookOpen } from "lucide-react";
 import { formatPrice } from "@/lib/formatPrice";
-import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, BookOpen } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 const courses = [
     {

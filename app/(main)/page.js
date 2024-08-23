@@ -1,4 +1,4 @@
-import { SectionTitle } from "@/components/section-title";
+import { SectionTitle } from "@/components/SectionTitle";
 import { buttonVariants } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 import { ArrowRightIcon } from "lucide-react";

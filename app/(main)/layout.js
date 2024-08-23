@@ -1,8 +1,5 @@
-import { MainNav } from "@/components/main-nav";
-import { SiteFooter } from "@/components/site-footer";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
-import Link from "next/link";
+import { MainNav } from "@/components/MainNav";
+import { SiteFooter } from "@/components/SiteFooter";
 
 import { SessionProvider } from "next-auth/react";
 

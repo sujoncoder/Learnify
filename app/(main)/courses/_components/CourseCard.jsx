@@ -1,12 +1,9 @@
-import Link from "next/link";
-import Image from "next/image";
-import { BookOpen } from "lucide-react";
-import { ArrowRightIcon } from "lucide-react";
-import { ArrowRight } from "lucide-react";
 import { formatPrice } from "@/lib/formatPrice";
-import { Button, buttonVariants } from "@/components/ui/button";
+import { BookOpen } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
-import { EnrollCourse } from "@/components/enroll-course";
+import { EnrollCourse } from "@/components/EnrollCourse";
 
 const CourseCard = ({ course }) => {
     return (
