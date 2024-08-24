@@ -11,7 +11,7 @@ const Footer = () => {
           {/* LMS Logo & Description */}
           <div>
             <Logo />
-            <h2 className="text-xl font-semibold mb-4">LMS EduPlatform</h2>
+            <h2 className="text-xl font-semibold mb-4">Learnify EduPlatform</h2>
             <p className="text-gray-400">
               Enhancing learning experiences with quality educational content and tools.
             </p>
@@ -61,7 +61,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-8 text-center text-gray-500 text-sm">
-          &copy; {new Date().getFullYear()} LMS EduPlatform. All rights reserved.
+          &copy; {new Date().getFullYear()} Learnify EduPlatform. All rights reserved.
         </div>
       </div>
     </footer>

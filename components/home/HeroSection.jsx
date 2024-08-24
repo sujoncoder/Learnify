@@ -26,7 +26,7 @@ export default function HeroSection() {
                 <h1 className="font-heading text-3xl font-bold sm:text-5xl md:text-6xl lg:text-7xl bg-gradient-to-r from-pink-400 via-blue-500 to-purple-500 bg-clip-text text-transparent">
                     Start Your Learning Adventure with Us.
                 </h1>
-                <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
+                <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8 my-4">
                     “The journey of a thousand miles begins with a single step.”
                 </p>
                 <div className="flex items-center gap-3 flex-wrap justify-center">
