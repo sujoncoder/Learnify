@@ -6,7 +6,7 @@ import { useState } from "react";
 
 import { MobileNav } from "@/components/MobileNav";
 import { Menu, X } from "lucide-react";
-import { Logo } from "./Logo";
+import { Logo } from "./logo";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Button, buttonVariants } from "./ui/button";
 import {

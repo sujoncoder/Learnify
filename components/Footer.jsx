@@ -1,7 +1,7 @@
 // src/Footer.js
 import { FaFacebookF, FaInstagram, FaLinkedinIn, FaTwitter } from 'react-icons/fa';
 import { MdContactMail, MdHome, MdInfo, MdSchool } from 'react-icons/md';
-import { Logo } from './Logo';
+import { Logo } from './logo';
 
 const Footer = () => {
   return (

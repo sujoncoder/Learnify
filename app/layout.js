@@ -7,9 +7,10 @@ const inter = Inter({ subsets: ["latin"] });
 const poppins = Inter({ subsets: ["latin"], variable: "--font-poppins" });
 
 export const metadata = {
-  title: "EduConnect - Wold's Best Learning Platform",
-  description: "Explore || Learn || Build || Share",
+  title: "Learnify - Your Friendly Learning Hub",
+  description: "Join us to Explore, Learn, Build, and Share in a supportive community!",
 };
+
 
 export default async function RootLayout({ children }) {
   await connectDB();
