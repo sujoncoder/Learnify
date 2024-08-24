@@ -6,7 +6,7 @@ import { buttonVariants } from '../ui/button';
 
 export default function HeroSection() {
     return (
-        <section className="h-screen space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32 grainy">
+        <section className="h-auto md:h-screen space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32 grainy">
             <div className="container flex max-w-[64rem] flex-col items-center gap-4 text-center relative isolate">
                 <div
                     aria-hidden="true"

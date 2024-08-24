@@ -6,7 +6,10 @@ import Link from "next/link";
 import { getCategories } from "@/queries/categories";
 import { getCourseList } from "@/queries/courses";
 
+import FAQ from "@/components/home/FAQ";
 import HeroSection from "@/components/home/HeroSection";
+import InstructorSection from "@/components/home/InstructorSection";
+import TeamSection from "@/components/home/TeamSection";
 import CourseCard from "./courses/_components/CourseCard";
 
 const HomePage = async () => {
@@ -76,6 +79,13 @@ const HomePage = async () => {
                     })}
                 </div>
             </section>
+
+            {/* Intructors */}
+            <InstructorSection />
+            {/* TeamSection */}
+            <TeamSection />
+            {/* FAQ */}
+            <FAQ />
         </>
     );
 };
