@@ -1,20 +1,21 @@
-"use client"
+"use client";
 
-import Teacher from "@/public/assets/images/nayem.jpg";
+import Team from "@/public/assets/images/team.jpg";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { FaChevronRight } from "react-icons/fa";
 
 const TeamSection = () => {
     return (
-        <div className="max-w-6xl mx-auto bg-slate-500 opacity-80 text-white p-8 md:p-16">
+        <div className="max-w-6xl mx-auto bg-slate-500 opacity-80 text-white p-8 md:p-16 rounded">
             <div className="flex flex-col md:flex-row items-center max-w-7xl mx-auto">
                 {/* Text Section */}
                 <motion.div
                     className="md:w-1/2 text-center md:text-left"
-                    initial={{ opacity: 0, x: -100 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5 }}
+                    initial={{ opacity: 0, y: 50 }} // Changed x to y for a vertical slide effect
+                    whileInView={{ opacity: 1, y: 0 }} // Changed animate to whileInView for scroll animation
+                    viewport={{ once: true }} // Ensures animation happens only once
+                    transition={{ duration: 0.6 }} // Adjusted duration for a smoother effect
                 >
                     <h2 className="text-4xl font-bold mb-4">Learnify for Teams</h2>
                     <p className="text-lg mb-4">
@@ -35,12 +36,13 @@ const TeamSection = () => {
                 {/* Image Section */}
                 <motion.div
                     className="md:w-1/2 mt-8 md:mt-0"
-                    initial={{ opacity: 0, x: 100 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5 }}
+                    initial={{ opacity: 0, y: 50 }} consistency
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.6 }}
                 >
                     <Image
-                        src={Teacher}
+                        src={Team}
                         alt="Team Collaboration"
                         className="rounded-lg shadow-lg"
                     />
