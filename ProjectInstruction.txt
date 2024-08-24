@@ -1,0 +1,80 @@
+📚 Project Overview: -- Learnify
+
+🔖 Version: -- 0.1.0
+
+📦 Dependencies:
+----------------
+These are the core libraries and tools required to run your application:
+
+🎨 UI & UX:
+-----------
+@radix-ui/*: -- A collection of accessible, unstyled components like Accordion, Avatar, Checkbox, Dialog, Dropdown Menu, and more.
+framer-motion: -- For animations and transitions.
+react-icons, lucide-react: -- For scalable vector icons.
+cmdk: -- A command menu component.
+
+
+📝 Forms & Validation:
+----------------------
+react-hook-form: For managing form state and validation.
+@hookform/resolvers: Integrates with popular validation libraries like zod.
+
+zod: -- A schema declaration and validation library.
+
+
+📊 Data Handling:
+-----------------
+@tanstack/react-table: -- For building tables with extensive functionality.
+mongoose: -- For interacting with MongoDB.
+date-fns: -- For date manipulation.
+
+🎥 Media Handling:
+------------------
+react-player: -- For embedding media players.
+react-dropzone: -- For file uploads.
+pdf-lib: -- For creating and modifying PDF documents.
+
+💳 E-commerce & Payments:
+-------------------------
+@stripe/stripe-js, stripe: -- For integrating Stripe payment processing.
+
+🔐 Authentication & Security:
+-----------------------------
+next-auth: -- For authentication in Next.js applications.
+bcryptjs: -- For password hashing.
+
+
+🎨 Theming:
+-----------
+next-themes: -- For enabling dark mode and theme switching.
+
+
+🎠 Carousel:
+------------
+embla-carousel-react: -- For creating responsive carousels.
+
+
+🔔 Notification & Toasts:
+-------------------------
+sonner: -- For toast notifications.
+
+
+🔧 Utility Libraries:
+---------------------
+clsx: -- For conditional className management.
+class-variance-authority: -- For managing component variants.
+tailwind-merge: -- To merge Tailwind CSS classes.
+
+
+🛠️ DevDependencies:
+-------------------
+These are tools used during development:
+
+🔍 Linting & Formatting:
+-------------------------
+eslint, eslint-config-next: -- For maintaining code quality.
+
+
+🎨 Styling:
+-----------
+tailwindcss, postcss: -- For styling the application with utility-first CSS.
