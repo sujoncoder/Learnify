@@ -4,9 +4,9 @@ import { motion } from "framer-motion";
 import { FaStar } from "react-icons/fa";
 
 const stats = [
-    { number: "25K+", label: "CLASSES" },
-    { number: "600K+", label: "MEMBERS" },
-    { number: "8K+", label: "TEACHERS" },
+    { number: "2K+", label: "CLASSES" },
+    { number: "31K+", label: "MEMBERS" },
+    { number: "100+", label: "TEACHERS" },
     { number: "4.8", label: "APP STORE RATING", stars: true },
 ];
 

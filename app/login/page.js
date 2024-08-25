@@ -1,14 +1,10 @@
 import { LoginForm } from "./_components/LoginForm";
 
-import SocialLogins from "./_components/SocialLogins";
 
 const LoginPage = () => {
   return (
-    <div className="w-full flex-col h-screen flex items-center justify-center">
-      <div className="container">
-        <LoginForm />
-        <SocialLogins />
-      </div>
+    <div className="bg-gradient-to-r from-blue-50 to-blue-100">
+      <LoginForm />
     </div>
   );
 };
