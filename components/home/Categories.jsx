@@ -1,6 +1,5 @@
 "use client";
 
-import { ArrowRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { SectionTitle } from "../SectionTitle";
@@ -9,15 +8,7 @@ const Categories = ({ categories }) => {
     return (
         <section className="container space-y-8 py-12 md:py-16 lg:py-24">
             <div className="flex items-center justify-between mb-8">
-                <SectionTitle className="text-3xl font-extrabold text-gray-900">Categories</SectionTitle>
-
-                <Link
-                    href="/categories"
-                    className="text-sm font-medium text-gray-700 hover:text-gray-900 flex items-center gap-2 transition-colors duration-300"
-                >
-                    Browse All
-                    <ArrowRightIcon className="h-5 w-5" />
-                </Link>
+                <SectionTitle className="text-3xl font-extrabold text-gray-900">Top Categories</SectionTitle>
             </div>
             <div className="grid grid-cols-2 gap-6 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
                 {categories.map((category) => (

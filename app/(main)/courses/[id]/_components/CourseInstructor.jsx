@@ -1,25 +1,35 @@
-import { Presentation } from "lucide-react";
-import { UsersRound } from "lucide-react";
-import { MessageSquare } from "lucide-react";
-import { Star } from "lucide-react";
-
 import { getCourseDetailsByInstructor } from "@/queries/courses";
-
+import { MessageSquare, Presentation, Star, UsersRound } from "lucide-react";
 import Image from "next/image";
 
-const CourseInstructor = async ({course}) => {
+const CourseInstructor = async ({ course }) => {
     const instructor = course?.instructor;
 
-    const fullName = `${instructor?.firstName}  ${instructor?.lastName}`;
-    const courseDetailsByInstructor = await getCourseDetailsByInstructor(instructor._id.toString());
+    // Handle cases where instructor might be null or undefined
+    if (!instructor) {
+        return (
+            <div className="bg-gray-50 rounded-md p-8">
+                <p className="text-gray-600">Instructor details not available.</p>
+            </div>
+        );
+    }
 
-    console.log(courseDetailsByInstructor)
+    const fullName = `${instructor.firstName} ${instructor.lastName}`;
 
+    let courseDetailsByInstructor = {};
+    try {
+        // Fetch course details if instructor ID is present
+        if (instructor._id) {
+            courseDetailsByInstructor = await getCourseDetailsByInstructor(instructor._id.toString());
+        }
+    } catch (error) {
+        console.error("Failed to fetch course details:", error);
+    }
 
     return (
         <div className="bg-gray-50 rounded-md p-8">
             <div className="md:flex md:gap-x-5 mb-8">
-                <div className="h-[310px] w-[270px] max-w-full  flex-none rounded mb-5 md:mb-0">
+                <div className="h-[310px] w-[270px] max-w-full flex-none rounded mb-5 md:mb-0">
                     <Image
                         src={instructor?.profilePicture}
                         alt={fullName}
@@ -39,26 +49,26 @@ const CourseInstructor = async ({course}) => {
                         <ul className="list space-y-4">
                             <li className="flex items-center space-x-3">
                                 <Presentation className="text-gray-600" />
-                                <div>{courseDetailsByInstructor?.courses} Course(s)</div>
+                                <div>{courseDetailsByInstructor.courses || 0} Course(s)</div>
                             </li>
                             <li className="flex space-x-3">
                                 <UsersRound className="text-gray-600" />
-                                <div>{courseDetailsByInstructor?.enrollments} Student Learned</div>
+                                <div>{courseDetailsByInstructor.enrollments || 0} Student(s) Learned</div>
                             </li>
                             <li className="flex space-x-3">
                                 <MessageSquare className="text-gray-600" />
-                                <div>{courseDetailsByInstructor?.reviews} Reviews</div>
+                                <div>{courseDetailsByInstructor.reviews || 0} Review(s)</div>
                             </li>
                             <li className="flex space-x-3">
                                 <Star className="text-gray-600" />
-                                <div>{courseDetailsByInstructor?.ratings} Average Rating</div>
+                                <div>{courseDetailsByInstructor.ratings || 0} Average Rating</div>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
             <p className="text-gray-600">
-                {instructor?.bio}
+                {instructor.bio || "No bio available."}
             </p>
         </div>
     );

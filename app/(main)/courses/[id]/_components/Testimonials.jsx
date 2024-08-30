@@ -1,5 +1,5 @@
 import { SectionTitle } from "@/components/SectionTitle";
-import { StarRating } from "@/components/star-rating";
+import { StarRating } from "@/components/StarRating";
 import {
     Carousel,
     CarouselContent,

@@ -13,7 +13,7 @@ import { GraduationCap } from "lucide-react";
 import { ArrowUpDown, MoreHorizontal, Pencil } from "lucide-react";
 import Link from "next/link";
 
-import { StarRating } from "@/components/star-rating";
+import { StarRating } from "@/components/StarRating";
 
 export const columns = [
   {
@@ -42,7 +42,7 @@ export const columns = [
         </Button>
       );
     },
-    cell:  ({ row }) => {
+    cell: ({ row }) => {
       const rating = row.getValue("rating");
       return <div className="flex"><StarRating rating={rating} /></div>
     },
