@@ -8,7 +8,7 @@ import { EnrollCourse } from "@/components/EnrollCourse";
 const CourseCard = ({ course }) => {
     return (
         <div className="group hover:shadow-sm transition overflow-hidden border rounded-lg p-3 h-full">
-            <Link key={course.id} href={`/courses/${course.id}`}>
+            <Link key={course?.id} href={`/courses/${course?.id}`}>
                 <div>
                     <div className="relative w-full aspect-video rounded-md overflow-hidden">
                         <Image
