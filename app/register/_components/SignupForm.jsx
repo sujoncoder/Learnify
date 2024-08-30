@@ -118,7 +118,7 @@ export function SignupForm({ role }) {
                 <Label htmlFor="confirmPassword">Confirm Password</Label>
                 <Input id="confirmPassword" name="confirmPassword" type="password" />
               </div>
-              <Button type="submit" className="w-full py-3 bg-blue-500 text-lg text-white rounded hover:bg-blue-600 active:bg-blue-700 duration-300 shadow">
+              <Button type="submit" className="w-full py-3 bg-blue-500 text-white rounded hover:bg-blue-600 active:bg-blue-700 duration-300 shadow text-lg">
                 {loading ? <Waiting /> : "Create an account"}
               </Button>
             </div>

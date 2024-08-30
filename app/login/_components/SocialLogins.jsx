@@ -14,7 +14,7 @@ const SocialLogins = () => {
             name="action"
             value="google">
             <FcGoogle className="w-8 h-8" />
-            <span className="text-lg">SignInWithGoogle</span>
+            <span>SignInWithGoogle</span>
           </Button>
         </div>
       </form>
