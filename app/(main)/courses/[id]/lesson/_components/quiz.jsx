@@ -9,7 +9,6 @@ import QuizModal from "./QuizModal";
 export function Quiz({ courseId, quizSet, isTaken }) {
     const [open, setOpen] = useState(false);
 
-    console.log(quizSet.quizIds);
 
     const quizzes = quizSet.quizIds.map((quiz) => {
         return {
@@ -24,7 +23,6 @@ export function Quiz({ courseId, quizSet, isTaken }) {
             }),
         };
     });
-    console.log({ quizzes });
     return (
         <>
             <div class="max-w-[270px] bg-white border border-border rounded-md dark:bg-gray-800 dark:border-gray-700 overflow-hidden">

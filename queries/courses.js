@@ -109,7 +109,6 @@ export async function getCourseDetailsByInstructor(instructorId, expand) {
         return acc + obj.rating;
     }, 0)) / totalTestimonials.length;
 
-    //console.log("testimonials", totalTestimonials, avgRating);
     if (expand) {
         const allCourses = await Course.find({ instructor: instructorId }).lean();
         return {

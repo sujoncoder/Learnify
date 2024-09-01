@@ -1,19 +1,19 @@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { formatMyDate } from "@/lib/date";
 
-import CourseOverview from "./CourseOverview";
 import CourseCurriculam from "./CourseCurriculam";
 import CourseInstructor from "./CourseInstructor";
+import CourseOverview from "./CourseOverview";
 
 import Image from "next/image";
 
-const CourseDetails = ({course}) => {
+const CourseDetails = ({ course }) => {
     const lastModifiedDate = formatMyDate(course.modifiedOn);
 
     return (
         <section className="py-8 md:py-12 lg:py-24">
             <div className="container">
-                <span className="bg-success py-0.5 px-0.5 rounded-full text-xs font-medium inline-block text-white">
+                <span className="bg-blue-500 opacity-50 py-1 px-3 rounded-full text-xs font-medium inline-block text-slate-100">
                     {course?.category?.title}
                 </span>
                 <h3 className="text-2xl md:text-3xl lg:text-4xl font-bold 2xl:text-5xl mt-3">
@@ -32,7 +32,7 @@ const CourseDetails = ({course}) => {
                             width={20}
                             height={20}
                         />
-                        <p className="font-bold">{course?.instructor?.firstName} { ' '} {course?.instructor?.lastName}</p>
+                        <p className="font-bold">{course?.instructor?.firstName} {' '} {course?.instructor?.lastName}</p>
                     </div>
                     <div className="flex items-center gap-2 text-sm">
                         <span className="text-success font-semibold">
@@ -63,7 +63,7 @@ const CourseDetails = ({course}) => {
                             <CourseCurriculam course={course} />
                         </TabsContent>
                         <TabsContent value="instructor">
-                           <CourseInstructor course={course} />
+                            <CourseInstructor course={course} />
                         </TabsContent>
                     </Tabs>
                 </div>

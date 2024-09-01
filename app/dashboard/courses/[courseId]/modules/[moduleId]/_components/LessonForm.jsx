@@ -60,7 +60,6 @@ export const LessonForm = ({ initialData, moduleId, courseId }) => {
   const { isSubmitting, isValid } = form.formState;
 
   const onSubmit = async (values) => {
-    console.log(values);
     try {
       const formData = new FormData();
 
@@ -87,7 +86,6 @@ export const LessonForm = ({ initialData, moduleId, courseId }) => {
   };
 
   const onReorder = async (updateData) => {
-    console.log({ updateData });
     try {
       setIsUpdating(true);
       await reOrderLesson(updateData);

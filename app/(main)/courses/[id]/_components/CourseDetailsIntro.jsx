@@ -17,7 +17,6 @@ const CourseDetailsIntro = async ({ course }) => {
 
   const hasEnrollment = await hasEnrollmentForCourse(course?.id, loggedInUser?.id);
 
-  console.log({ hasEnrollment });
 
   return (
     <div className="overflow-x-hidden  grainy">

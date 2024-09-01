@@ -6,6 +6,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
+import { addQuizToQuizSet } from "@/app/actions/quiz";
+import { Button } from "@/components/ui/button";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
   FormControl,
@@ -15,14 +18,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Pencil } from "lucide-react";
-import { useState } from "react";
-import { useRouter } from "next/navigation";
-import { PlusCircle } from "lucide-react";
-import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
-import { addQuizToQuizSet } from "@/app/actions/quiz";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   title: z
@@ -110,11 +107,9 @@ export const AddQuizForm = ({ quizSetId }) => {
   });
 
   const { isSubmitting, isValid, errors } = form.formState;
-  console.log(errors);
 
   const onSubmit = async (values) => {
     try {
-      console.log({ values });
 
       const correctness = [values.optionA.isTrue, values.optionB.isTrue, values.optionC.isTrue, values.optionD.isTrue];
 

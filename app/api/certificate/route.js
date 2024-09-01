@@ -1,8 +1,8 @@
-import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 import fontkit from "@pdf-lib/fontkit";
+import { PDFDocument, StandardFonts, rgb } from "pdf-lib";
 
-import { getCourseDetails } from "@/queries/courses";
 import { getLoggedInUser } from "@/lib/loggedin-user";
+import { getCourseDetails } from "@/queries/courses";
 import { getAReport } from "@/queries/reports";
 
 import { formatMyDate } from "@/lib/date";
@@ -12,30 +12,16 @@ const kalamFontUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/fonts/kalam/Kalam-Regu
 const kalamFontBytes = await fetch(kalamFontUrl).then((res) =>
   res.arrayBuffer()
 );
-console.log({
-  env: process.env.NEXT_PUBLIC_BASE_URL,
-});
-console.log({
-  kalamFontUrl,
-  kalamFontBytes,
-});
 
 const montserratItalicFontUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/fonts/montserrat/Montserrat-Italic.ttf`;
 const montserratItalicFontBytes = await fetch(montserratItalicFontUrl).then(
   (res) => res.arrayBuffer()
 );
-console.log({
-  montserratItalicFontUrl,
-  montserratItalicFontBytes,
-});
+
 const montserratFontUrl = `${process.env.NEXT_PUBLIC_BASE_URL}/fonts/montserrat/Montserrat-Medium.ttf`;
 const montserratFontBytes = await fetch(montserratFontUrl).then((res) =>
   res.arrayBuffer()
 );
-console.log({
-  montserratFontUrl,
-  montserratFontBytes,
-});
 
 export async function GET(request) {
   try {
@@ -46,13 +32,11 @@ export async function GET(request) {
      *-------------------*/
     const searchParams = request.nextUrl.searchParams
     const courseId = searchParams.get('courseId');
-    const course  = await getCourseDetails(courseId);
+    const course = await getCourseDetails(courseId);
     const loggedInUser = await getLoggedInUser();
 
-    const report = await getAReport({ course: courseId, student:loggedInUser.id });
-    console.log(report?.completion_date);
+    const report = await getAReport({ course: courseId, student: loggedInUser.id });
     const completionDate = report?.completion_date ? formatMyDate(report?.completion_date) : formatMyDate(Date.now());
-    console.log(completionDate);
 
     const completionInfo = {
       name: `${loggedInUser?.firstName} ${loggedInUser?.lastName}`,
@@ -63,7 +47,6 @@ export async function GET(request) {
       sign: "/sign.png",
     };
 
-    console.log(completionInfo);
 
     const pdfDoc = await PDFDocument.create();
     pdfDoc.registerFontkit(fontkit);

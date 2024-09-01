@@ -1,4 +1,4 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
 
 import { getLoggedInUser } from "@/lib/loggedin-user";
 import { getLesson } from "@/queries/lessons";
@@ -13,7 +13,7 @@ const COMPLETED = "completed";
 
 async function updateReport(userId, courseId, moduleId, lessonId) {
     try {
-        createWatchReport({userId, courseId, moduleId, lessonId})
+        createWatchReport({ userId, courseId, moduleId, lessonId })
     } catch (err) {
         throw new Error(err);
     }
@@ -33,7 +33,6 @@ export async function POST(request) {
             status: 401,
         });
     }
-    console.log(state);
     if (state !== STARTED && state !== COMPLETED) {
         return new NextResponse(`Invalid state. Can not process request.`, {
             status: 500,

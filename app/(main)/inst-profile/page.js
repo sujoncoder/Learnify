@@ -1,4 +1,4 @@
-//import { CourseProgress } from "@/components/course-progress";
+//import { CourseProgress } from "@/components/CourseProgress";
 import { SectionTitle } from "@/components/SectionTitle";
 import { Button } from "@/components/ui/button";
 import { formatPrice } from "@/lib/formatPrice";

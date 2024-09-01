@@ -53,7 +53,6 @@ const EnrolledCourseCard = async ({ enrollment }) => {
     .filter((elem) => elem.length > 0)
     .flat();
 
-  //console.log({totalCorrect});
 
   const marksFromQuizzes = totalCorrect?.length * 5;
 

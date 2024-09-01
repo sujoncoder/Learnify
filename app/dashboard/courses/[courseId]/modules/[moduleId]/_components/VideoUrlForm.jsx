@@ -48,17 +48,13 @@ export const VideoUrlForm = ({ initialData, courseId, lessonId }) => {
   const { isSubmitting, isValid } = form.formState;
 
   const onSubmit = async (values) => {
-    console.log(values);
     try {
       const payload = {};
       payload["video_url"] = values?.url;
-      console.log(payload);
       const duration = values?.duration;
       const splitted = duration.split(":");
-      console.log(splitted)
       if (splitted.length === 3) {
         payload["duration"] = splitted[0] * 3600 + splitted[1] * 60 + splitted[2] * 1;
-        console.log(lessonId, payload);
         await updateLesson(lessonId, payload);
         toast.success("Lesson updated");
         toggleEdit();

@@ -1,16 +1,10 @@
-import { Button } from "@/components/ui/button";
-import { formatPrice } from "@/lib/formatPrice";
 
-import { ArrowRight } from "lucide-react";
-import { BookOpen } from "lucide-react";
-import Image from "next/image";
-import Link from "next/link";
 
-import SearchCourse from "./_components/SearchCourse";
-import SortCourse from "./_components/SortCourse";
-import FilterCourseMobile from "./_components/FilterCourseMobile";
 import ActiveFilters from "./_components/ActiveFilters";
 import FilterCourse from "./_components/FilterCourse";
+import FilterCourseMobile from "./_components/FilterCourseMobile";
+import SearchCourse from "./_components/SearchCourse";
+import SortCourse from "./_components/SortCourse";
 
 import { getCourseList } from "@/queries/courses";
 import CourseCard from "./_components/CourseCard";

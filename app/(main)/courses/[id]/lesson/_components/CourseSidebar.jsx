@@ -1,5 +1,5 @@
 
-import { CourseProgress } from "@/components/course-progress";
+import { CourseProgress } from "@/components/CourseProgress";
 
 import { getLoggedInUser } from "@/lib/loggedin-user";
 import { Watch } from "@/model/watch-model";
@@ -31,7 +31,6 @@ export const CourseSidebar = async ({ courseId }) => {
       const lessonId = lesson._id.toString();
       const watch = await Watch.findOne({ lesson: lessonId, module: moduleId, user: loggedinUser.id }).lean();
       if (watch?.state === 'completed') {
-        console.log(`This lesson ${lesson.title} has completed`);
         lesson.state = 'completed';
       }
       return lesson;
@@ -39,13 +38,10 @@ export const CourseSidebar = async ({ courseId }) => {
     return module;
   }));
 
-  console.log(updatedModules);
 
   const quizSet = course?.quizSet;
   const isQuizComplete = report?.quizAssessment ? true : false;
 
-  console.log({ quizSet });
-  console.log({ isQuizComplete });
 
 
   return (

@@ -1,8 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Pencil } from "lucide-react";
-import { Trash } from "lucide-react";
+import { Pencil, Trash } from "lucide-react";
 
 import { useState } from "react";
 
@@ -15,13 +14,12 @@ import { useRouter } from "next/navigation";
 export const QuizCardActions = ({ quiz, quizSetId }) => {
     const [action, setAction] = useState(null);
     const router = useRouter();
-    
+
     async function handleSubmit(event) {
         event.preventDefault();
         try {
             switch (action) {
                 case "edit-quiz": {
-                    console.log(quiz.id, quizSetId);
                     break;
                 }
                 case "delete-quiz": {

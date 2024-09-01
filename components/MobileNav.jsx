@@ -1,18 +1,17 @@
-import * as React from "react";
+import { useLockBody } from "@/hooks/use-lock-body";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { useState } from "react";
-import { cn } from "@/lib/utils";
-import { useLockBody } from "@/hooks/use-lock-body";
+import { Button, buttonVariants } from "./ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { Button, buttonVariants } from "./ui/button";
 
+import { useSession } from "next-auth/react";
 import { useEffect } from "react";
-import { useSession, signOut } from "next-auth/react";
 
 import { redirect } from "next/navigation";
 
@@ -28,7 +27,6 @@ export function MobileNav({ items, children }) {
   const [loginSession, setLoginSession] = useState(null);
 
   useEffect(() => {
-    console.log("test");
     setLoginSession(session);
   }, [session]);
 
@@ -53,7 +51,7 @@ export function MobileNav({ items, children }) {
             </Link>
           ))}
         </nav>
-        { !loginSession && (<div className="items-center gap-3 flex lg:hidden">
+        {!loginSession && (<div className="items-center gap-3 flex lg:hidden">
           <Link
             href="/login"
             className={cn(buttonVariants({ size: "sm" }), "px-4")}

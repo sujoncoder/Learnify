@@ -17,6 +17,9 @@ const HomePage = async () => {
     const courses = await getCourseList();
     const categories = await getCategories();
 
+    // Slice the first 4 courses from the list
+    const topCourses = courses.slice(0, 4);
+
     return (
         <>
             <HeroSection />
@@ -39,7 +42,7 @@ const HomePage = async () => {
                     </Link>
                 </div>
                 <div className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-4 gap-4">
-                    {courses.map((course) => {
+                    {topCourses.map((course) => {
                         return <CourseCard key={course.id} course={course} />;
                     })}
                 </div>

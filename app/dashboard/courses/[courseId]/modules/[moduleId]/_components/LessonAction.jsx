@@ -16,7 +16,6 @@ export const LessonActions = ({ lesson, moduleId, onDelete }) => {
 
     async function handleSubmit(event) {
         event.preventDefault();
-        console.log(action);
 
         try {
             switch (action) {

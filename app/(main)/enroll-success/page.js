@@ -3,17 +3,16 @@ import { CircleCheck } from "lucide-react";
 import Link from "next/link";
 
 import { auth } from "@/auth";
-import { redirect } from "next/navigation";
 import { stripe } from "@/lib/stripe";
 import { getCourseDetails } from "@/queries/courses";
 import { getUserByEmail } from "@/queries/users";
+import { redirect } from "next/navigation";
 
 import { sendEmails } from "@/lib/emails";
 
 import { enrollForCourse } from "@/queries/enrollments";
 
 const Success = async ({ searchParams: { session_id, courseId } }) => {
-    console.log(session_id, courseId);
 
     if (!session_id)
         throw new Error(
@@ -36,28 +35,23 @@ const Success = async ({ searchParams: { session_id, courseId } }) => {
         }
     );
 
-    //console.log(checkoutSession);
 
     const paymentIntent = checkoutSession?.payment_intent;
     const paymentStatus = paymentIntent?.status;
 
-    console.log(paymentStatus);
 
     // Cutomer info
     const customerName = `${loggedInUser?.firstName} ${loggedInUser?.lastName}`;
     const customerEmail = loggedInUser?.email;
     const productName = course?.title;
-    console.log(productName, customerName, customerEmail);
 
     if (paymentStatus === "succeeded") {
         // Update DB(Enrollment collection)
-        console.log(course?.id, loggedInUser?.id);
         const enrolled = await enrollForCourse(
-          course?.id,
-          loggedInUser?.id,
-          "stripe"
+            course?.id,
+            loggedInUser?.id,
+            "stripe"
         );
-        console.log(enrolled);
 
         // Send Emails to the instructor, student,and the person
         // who paid
@@ -67,20 +61,19 @@ const Success = async ({ searchParams: { session_id, courseId } }) => {
 
 
         const emailsToSend = [
-          {
-            to: instructorEmail,
-            subject: `New Enrollment for ${productName}.`,
-            message: `Congratulations, ${instructorName}. A new student, ${customerName} has enrolled to your course ${productName} just now. Please check the instructor dashboard and give a high-five to your new student.`,
-          },
-          {
-            to: customerEmail,
-            subject: `Enrollment Success for ${productName}`,
-            message: `Hey ${customerName} You have successfully enrolled for the course ${productName}`,
-          }
+            {
+                to: instructorEmail,
+                subject: `New Enrollment for ${productName}.`,
+                message: `Congratulations, ${instructorName}. A new student, ${customerName} has enrolled to your course ${productName} just now. Please check the instructor dashboard and give a high-five to your new student.`,
+            },
+            {
+                to: customerEmail,
+                subject: `Enrollment Success for ${productName}`,
+                message: `Hey ${customerName} You have successfully enrolled for the course ${productName}`,
+            }
         ];
 
         const emailSentResponse = await sendEmails(emailsToSend);
-        console.log(emailSentResponse);
     }
 
     return (

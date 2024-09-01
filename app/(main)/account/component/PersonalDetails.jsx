@@ -5,43 +5,42 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 
-import {useState} from "react";
+import { useState } from "react";
 
 import { updateUserInfo } from "@/app/actions/account";
 
 import { toast } from "sonner";
 
-const PersonalDetails = ({userInfo}) => {
+const PersonalDetails = ({ userInfo }) => {
 
-    const [infoState, setInfoState] = useState({
-        "firstName": userInfo.firstName,
-        "lastName": userInfo.lastName,
-        "email": userInfo.email,
-        "designation": userInfo.designation,
-        "bio": userInfo.bio
-    });
+  const [infoState, setInfoState] = useState({
+    "firstName": userInfo.firstName,
+    "lastName": userInfo.lastName,
+    "email": userInfo.email,
+    "designation": userInfo.designation,
+    "bio": userInfo.bio
+  });
 
-    const handleChange = (event) => {
-        const field = event.target.name;
-        const value = event.target.value;
+  const handleChange = (event) => {
+    const field = event.target.name;
+    const value = event.target.value;
 
-        setInfoState({
-            ...infoState, [field]: value
-        })
+    setInfoState({
+      ...infoState, [field]: value
+    })
+  }
+
+  const handleUpdate = async (event) => {
+    event.preventDefault();
+
+    try {
+      await updateUserInfo(userInfo?.email, infoState);
+      toast.success("User details updated successfully.")
+    } catch (error) {
+      console.error(error);
+      toast.error(`Error: ${error.message}`)
     }
-
-    const handleUpdate = async (event) => {
-        event.preventDefault();
-        console.log(infoState);
-
-        try{
-            await updateUserInfo(userInfo?.email, infoState);
-            toast.success("User details updated successfully.")
-        } catch (error) {
-            console.error(error);
-            toast.error(`Error: ${error.message}`)
-        }
-    }
+  }
 
   return (
     <div className="p-6 rounded-md shadow dark:shadow-gray-800 bg-white dark:bg-slate-900">

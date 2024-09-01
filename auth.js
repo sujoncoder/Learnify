@@ -1,9 +1,9 @@
+import bcrypt from "bcryptjs";
 import NextAuth from "next-auth";
-import { authConfig } from "./auth.config";
 import CredentialsProvider from "next-auth/providers/credentials";
 import GoogleProvider from "next-auth/providers/google";
+import { authConfig } from "./auth.config";
 import { User } from "./model/user-model";
-import bcrypt from "bcryptjs";
 
 async function refreshAccessToken(token) {
     try {
@@ -16,31 +16,31 @@ async function refreshAccessToken(token) {
                 refresh_token: token.refreshToken,
             });
 
-            const response = await fetch(url, {
-              headers: {
+        const response = await fetch(url, {
+            headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
-              },
-              method: 'POST'
-            })
+            },
+            method: 'POST'
+        })
 
-            const refreshedTokens = await response.json();
+        const refreshedTokens = await response.json();
 
-            if(!response.ok) {
-              throw refreshedTokens;
-            }
+        if (!response.ok) {
+            throw refreshedTokens;
+        }
 
-            return {
-              ...token,
-              accessToken: refreshedTokens?.access_token,
-              accessTokenExpires: Date.now() + refreshedTokens?.expires_in * 1000,
-              refreshToken: refreshedTokens?.refresh_token,
-            }
+        return {
+            ...token,
+            accessToken: refreshedTokens?.access_token,
+            accessTokenExpires: Date.now() + refreshedTokens?.expires_in * 1000,
+            refreshToken: refreshedTokens?.refresh_token,
+        }
     } catch (error) {
         console.log(error);
 
         return {
-          ...token,
-          error: "RefreshAccessTokenError"
+            ...token,
+            error: "RefreshAccessTokenError"
         }
     }
 }
@@ -61,7 +61,6 @@ export const {
                     const user = await User.findOne({
                         email: credentials?.email,
                     });
-                    console.log(user);
 
                     if (user) {
                         const isMatch = await bcrypt.compare(

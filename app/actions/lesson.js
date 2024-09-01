@@ -12,10 +12,8 @@ export async function createLesson(data) {
     const moduleId = data.get("moduleId");
     const order = data.get("order");
 
-    console.log(title, slug, moduleId, order);
 
-    const createdLesson = await create({title, slug, order});
-    console.log(createdLesson);
+    const createdLesson = await create({ title, slug, order });
 
     const module = await Module.findById(moduleId);
     module.lessonIds.push(createdLesson._id);
@@ -29,18 +27,17 @@ export async function createLesson(data) {
 }
 
 export async function reOrderLesson(data) {
-    try {
-        await Promise.all(data.map(async (element) => {
-                await Lesson.findByIdAndUpdate(element.id, {order: element.position});
-        }));
-    } catch (err) {
-        throw new Error(err);
-    }
+  try {
+    await Promise.all(data.map(async (element) => {
+      await Lesson.findByIdAndUpdate(element.id, { order: element.position });
+    }));
+  } catch (err) {
+    throw new Error(err);
+  }
 }
 
 export async function updateLesson(lessonId, data) {
-  console.log("**** updateLesson", lessonId, data);
-  try{
+  try {
     await Lesson.findByIdAndUpdate(lessonId, data);
   } catch (err) {
     throw new Error(err);
@@ -48,12 +45,11 @@ export async function updateLesson(lessonId, data) {
 }
 
 export async function changeLessonPublishState(lessonId) {
-  console.log("changeLessonPublishState", lessonId);
   const lesson = await Lesson.findById(lessonId);
   try {
-    const res = await Lesson.findByIdAndUpdate(lessonId, {active: !lesson.active}, {lean: true});
+    const res = await Lesson.findByIdAndUpdate(lessonId, { active: !lesson.active }, { lean: true });
     return res.active
-  }catch (err) {
+  } catch (err) {
     throw new Error(err);
   }
 }

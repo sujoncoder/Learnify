@@ -36,7 +36,6 @@ export const ImageForm = ({ initialData, courseId }) => {
             body: formData
           });
           const result = await response.text();
-          console.log(result);
           if (response.status === 200) {
             initialData.imageUrl = `/assets/images/courses/${file[0].path}`;
             toast.success(result);

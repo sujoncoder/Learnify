@@ -4,6 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import * as z from "zod";
 
+import { updateCourse } from "@/app/actions/course";
 import { Button } from "@/components/ui/button";
 import { Combobox } from "@/components/ui/combobox";
 import {
@@ -18,7 +19,6 @@ import { Pencil } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
-import { updateCourse } from "@/app/actions/course";
 
 const formSchema = z.object({
   value: z.string().min(1),
@@ -45,9 +45,8 @@ export const CategoryForm = ({
 
   const onSubmit = async (values) => {
     try {
-      console.log(values);
       const selectedCategory = options.find(option => option.value === values.value);
-      await updateCourse(courseId, {"category": selectedCategory.id})
+      await updateCourse(courseId, { "category": selectedCategory.id })
       toast.success("Course updated");
       toggleEdit();
       router.refresh();
@@ -85,7 +84,7 @@ export const CategoryForm = ({
           {selectedOptions?.label || "No category"}
         </p>
       )}
-      {console.log({ options })}
+
       {isEditing && (
         <Form {...form}>
           <form

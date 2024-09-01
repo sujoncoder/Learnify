@@ -15,11 +15,9 @@ import { getModule } from "@/queries/modules";
 
 const Module = async ({ params: { courseId, moduleId } }) => {
   const module = await getModule(moduleId);
-  console.log(module);
 
   const lessons = replaceMongoIdInArray(module.lessonIds).sort((a, b) => a.order - b.order);
 
-  console.log(lessons);
 
   return (
     <>

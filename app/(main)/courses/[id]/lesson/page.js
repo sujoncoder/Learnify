@@ -17,7 +17,6 @@ const Course = async ({ params: { id }, searchParams: { name, module } }) => {
 
 	const defaultModule = module ?? allModules[0].slug;
 
-	console.log({ lessonToPlay });
 
 	return (
 		<div>

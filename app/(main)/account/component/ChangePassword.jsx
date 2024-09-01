@@ -9,7 +9,7 @@ import { toast } from "sonner";
 
 import { changePassword } from "@/app/actions/account";
 
-const ChangePassword = ({email}) => {
+const ChangePassword = ({ email }) => {
 
   const [passwordState, setPasswordState] = useState({
     "oldPassword": "",
@@ -20,12 +20,11 @@ const ChangePassword = ({email}) => {
     const key = event.target.name;
     const value = event.target.value;
 
-    setPasswordState({...passwordState, [key]: value});
+    setPasswordState({ ...passwordState, [key]: value });
   }
 
   async function doPassowrdChange(event) {
     event.preventDefault();
-    console.log(passwordState);
 
     try {
       await changePassword(email, passwordState?.oldPassword, passwordState?.newPassword);

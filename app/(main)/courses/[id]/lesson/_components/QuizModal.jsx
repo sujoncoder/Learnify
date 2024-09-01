@@ -1,15 +1,14 @@
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogFooter } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
 import { toast } from "sonner";
 
 import { addQuizAssessment } from "@/app/actions/quiz";
 
-function QuizModal({courseId, quizSetId, quizzes, open, setOpen }) {
+function QuizModal({ courseId, quizSetId, quizzes, open, setOpen }) {
     const router = useRouter();
     const totalQuizes = quizzes?.length;
     const [quizIndex, setQuizIndex] = useState(0);
@@ -22,7 +21,6 @@ function QuizModal({courseId, quizSetId, quizzes, open, setOpen }) {
         const nextQuizIndex = quizIndex + 1;
         const prevQuizIndex = quizIndex - 1;
         if (type === "next" && nextQuizIndex <= lastQuizIndex) {
-            console.log("next");
             return setQuizIndex((prev) => prev + 1);
         }
         if (type === "prev" && prevQuizIndex >= 0) {
@@ -31,41 +29,39 @@ function QuizModal({courseId, quizSetId, quizzes, open, setOpen }) {
     };
 
     const updateAnswer = (event, quizId, quizTitle, selected) => {
-      const key = event.target.name;
-      const checked = event.target.checked;
+        const key = event.target.name;
+        const checked = event.target.checked;
 
-      const obj = {};
-      if (checked) {
-        obj["option"] = selected
-      }
+        const obj = {};
+        if (checked) {
+            obj["option"] = selected
+        }
 
-      const answer = {
-        quizId: quizId,
-        options: [obj]
-      }
+        const answer = {
+            quizId: quizId,
+            options: [obj]
+        }
 
-      console.log(answer);
-      const found = answers.find((a) => a.quizId === answer.quizId);
+        const found = answers.find((a) => a.quizId === answer.quizId);
 
-      if (found) {
-        const filtered = answers.filter((a) => a.quizId !== answer.quizId);
-        setAnswers([...filtered, answer]);
-      } else {
-        setAnswers([...answers, answer]);
-      }
+        if (found) {
+            const filtered = answers.filter((a) => a.quizId !== answer.quizId);
+            setAnswers([...filtered, answer]);
+        } else {
+            setAnswers([...answers, answer]);
+        }
 
     }
 
     const submitQuiz = async (event) => {
-      try {
-        console.log(answers);
-        await addQuizAssessment(courseId, quizSetId, answers);
-        setOpen(false);
-        router.refresh();
-        toast.success(`Thanks for submitting the quiz.`);
-      } catch(error) {
-        toast.error('Problem in submitting the quiz');
-      }
+        try {
+            await addQuizAssessment(courseId, quizSetId, answers);
+            setOpen(false);
+            router.refresh();
+            toast.success(`Thanks for submitting the quiz.`);
+        } catch (error) {
+            toast.error('Problem in submitting the quiz');
+        }
 
     }
 
@@ -124,12 +120,12 @@ function QuizModal({courseId, quizSetId, quizzes, open, setOpen }) {
                                     type="radio"
                                     name="answer"
                                     onChange={(e, quizId, quizTitle, selected) =>
-                                      updateAnswer(
-                                        e,
-                                        quizzes[quizIndex].id,
-                                        quizzes[quizIndex].title,
-                                        option.label
-                                      )
+                                        updateAnswer(
+                                            e,
+                                            quizzes[quizIndex].id,
+                                            quizzes[quizIndex].title,
+                                            option.label
+                                        )
                                     }
                                     id={`option-${option.label}`}
                                 />
@@ -151,10 +147,10 @@ function QuizModal({courseId, quizSetId, quizzes, open, setOpen }) {
                             <ArrowLeft /> Previous Quiz
                         </Button>
                         <Button
-                          className="gap-2 rounded-3xl bg-green-600"
-                          onClick={submitQuiz}
-                          type="submit"
-                         >Submit</Button>
+                            className="gap-2 rounded-3xl bg-green-600"
+                            onClick={submitQuiz}
+                            type="submit"
+                        >Submit</Button>
                         <Button
                             className="gap-2 rounded-3xl"
                             disabled={quizIndex >= lastQuizIndex}

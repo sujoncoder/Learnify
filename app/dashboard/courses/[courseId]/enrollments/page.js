@@ -11,7 +11,6 @@ const EnrollmentsPage = async ({ params: { courseId } }) => {
   const allEnrollments = await getInstructorDashboardData(ENROLLMENT_DATA);
   const enrollmentForCourse = allEnrollments.filter(enrollment => enrollment?.course.toString() == courseId);
 
-  console.log(enrollmentForCourse);
 
   return (
     <div className="p-6">

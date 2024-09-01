@@ -12,8 +12,6 @@ export const UploadDropzone = (props) => {
 
   const [droppedFiles, setDroppedFiles] = useState(null);
 
-  console.log(droppedFiles);
-
   const [isUploading, setIsUploading] = useState(false);
 
   const [uploadProgress, setUploadProgress] = useState(0);

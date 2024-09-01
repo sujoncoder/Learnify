@@ -47,7 +47,6 @@ export const ReviewModal = ({ open, setOpen }) => {
     } catch (error) {
       toast.error("Something went wrong");
     }
-    console.log(values);
   };
   return (
     <Dialog open={open} onOpenChange={setOpen}>

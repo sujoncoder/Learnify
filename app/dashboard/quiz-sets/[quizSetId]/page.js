@@ -68,7 +68,6 @@ const EditQuizSet = async ({ params: { quizSetId } }) => {
       })
     }
   })
-  console.log(quizSet);
 
   return (
     <>
